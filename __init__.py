@@ -3,11 +3,11 @@ Home Assistant skill
 """  # pylint: disable=C0103
 from os.path import join as pth_join
 
-from mycroft import MycroftSkill, intent_handler
-from mycroft.messagebus.message import Message
-from mycroft.skills.core import FallbackSkill
-from mycroft.util import get_cache_directory
-from mycroft.util.format import nice_number
+from core import Skill, intent_handler
+from core.messagebus.message import Message
+from core.skills import FallbackSkill
+from core.util import get_cache_directory
+from core.util.format import nice_number
 from quantulum3 import parser
 from requests.exceptions import (HTTPError, InvalidURL, RequestException,
                                  SSLError, Timeout, URLRequired)
@@ -37,7 +37,7 @@ class HomeAssistantSkill(FallbackSkill):
     """Main skill class"""
 
     def __init__(self) -> None:
-        MycroftSkill.__init__(self)
+        Skill.__init__(self)
         super().__init__(name="HomeAssistantSkill")
         self.ha_client = None
         self.enable_fallback = False
